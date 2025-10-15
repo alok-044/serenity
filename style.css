@@ -132,7 +132,7 @@ nav a:hover, nav a.active, nav a:focus-visible {
     display: flex;
     gap: 10px;
     height: 50px;
-    width: 210px; /* Adjusted width for better alignment */
+    width: 120px; /* Adjusted width for better alignment */
 }
 
 /* Main Content & Sections */
