@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity - Mental Health Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <div class="cursor"></div>
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <i class="fas fa-brain logo-icon" aria-hidden="true"></i>
+                    <div class="logo-text">Serenity</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="active" data-section="home"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                        <li><a href="#journal" data-section="journal"><i class="fas fa-book-open" aria-hidden="true"></i> Journal</a></li>
+                        <li><a href="#ai" data-section="ai"><i class="fas fa-robot" aria-hidden="true"></i> Mindful AI</a></li>
+                        <li><a href="#mindfulness" data-section="mindfulness"><i class="fas fa-spa" aria-hidden="true"></i> Mindfulness</a></li>
+                        <li><a href="#resources" data-section="resources"><i class="fas fa-hands-helping" aria-hidden="true"></i> Resources</a></li>
+                        <li><a href="#profile" data-section="profile" id="profile-nav-link" class="hidden"><i class="fas fa-user" aria-hidden="true"></i> Profile</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="login-btn">Login</button>
+                    <button class="btn" id="signup-btn">Sign Up</button>
+                </div>
+            </header>
+
+            <main>
+                <section id="home" class="section-container">
+                    <div class="interactive-background" id="home-background"></div>
+                    <div class="card home scroll-animate">
+                        <div class="home-content">
+                            <div class="home-text">
+                                <h1 class="title-animate">Unlock a Healthier Mind</h1>
+                                <p class="text-animate">Discover the science-backed benefits of mindfulness and start your journey to a more peaceful and focused life.</p>
+                            </div>
+                            <div class="brain-container">
+                                <img src="https://www.pngarts.com/files/5/Art-Brain-PNG-Photo.png" alt="Brain with mindfulness benefits" class="brain-image">
+                                <div class="benefit-popup" id="benefit1"><span>Reduced Stress</span></div>
+                                <div class="benefit-popup" id="benefit2"><span>Improved Focus</span></div>
+                                <div class="benefit-popup" id="benefit3"><span>Emotional Balance</span></div>
+                                <div class="benefit-popup" id="benefit4"><span>Increased Resilience</span></div>
+                                <div class="benefit-popup" id="benefit5"><span>Boosts Self-insight</span></div>
+                                <div class="benefit-popup" id="benefit6"><span>Boosts Memory</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="journal" class="section-container">
+                    <canvas class="interactive-background" id="journal-background"></canvas>
+                    <div class="card journal scroll-animate">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-book-open" aria-hidden="true"></i></div>
+                            <h2 class="card-title">Mood Journal</h2>
+                        </div>
+                        <p>Write about your day and we'll analyze your mood. Your entries are saved securely in your browser.</p>
+                        <form class="journal-form">
+                            <label for="journal-entry" class="sr-only">How are you feeling today?</label>
+                            <textarea id="journal-entry" placeholder="How are you feeling today? What's on your mind..."></textarea>
+                            <button type="submit" class="btn" id="analyze-btn">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i> Analyze Mood
+                            </button>
+                        </form>
+                        <div class="mood-display hidden" id="mood-result">
+                            <div class="mood-icon" id="mood-icon"><i class="fas fa-smile-beam" aria-hidden="true"></i></div>
+                            <p class="mood-text" id="mood-text">Your mood appears positive today!</p>
+                        </div>
+                        <div class="mood-chart">
+                            <div class="chart-bar"><div class="bar" style="height: 60%;"></div><div class="bar-label">Mon</div></div>
+                            <div class="chart-bar"><div class="bar" style="height: 40%;"></div><div class="bar-label">Tue</div></div>
+                            <div class="chart-bar"><div class="bar" style="height: 80%;"></div><div class="bar-label">Wed</div></div>
+                            <div class="chart-bar"><div class="bar" style="height: 70%;"></div><div class="bar-label">Thu</div></div>
+                            <div class="chart-bar"><div class="bar" style="height: 90%;"></div><div class="bar-label">Fri</div></div>
+                            <div class="chart-bar"><div class="bar" style="height: 50%;"></div><div class="bar-label">Sat</div></div>
+                            <div class="chart-bar"><div class="bar" style="height: 75%;"></div><div class="bar-label">Sun</div></div>
+                        </div>
+                        <div class="entries-container">
+                            <h3>Recent Entries</h3>
+                            <div id="journal-list"></div>
+                            <div class="entry-empty"><p>Your journal entries will appear here.</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ai" class="section-container">
+                    <div class="interactive-background" id="ai-background"></div>
+                    <div class="card ai scroll-animate">
+                        <div class="card-header">
+                           <div class="card-icon"><i class="fas fa-robot" aria-hidden="true"></i></div>
+                           <h2 class="card-title">Mindful Moments AI</h2>
+                       </div>
+                       <p>Select a theme and let our AI generate a unique mindfulness prompt or affirmation for you.</p>
+
+                       <div class="ai-controls">
+                           <div class="theme-selector">
+                               <button class="theme-btn active" data-theme="Calm"><i class="fas fa-wind"></i> Calm</button>
+                               <button class="theme-btn" data-theme="Focus"><i class="fas fa-crosshairs"></i> Focus</button>
+                               <button class="theme-btn" data-theme="Gratitude"><i class="fas fa-leaf"></i> Gratitude</button>
+                           </div>
+                           <button class="btn" id="generate-ai-btn"><i class="fas fa-magic"></i> Generate Moment</button>
+                       </div>
+
+                       <div class="ai-result-container">
+                           <div class="ai-loading hidden">
+                               <span></span><span></span><span></span>
+                               <p>Generating your mindful moment...</p>
+                           </div>
+                           <div id="ai-output">
+                               <p class="placeholder-text">Your personalized moment of mindfulness will appear here once generated.</p>
+                           </div>
+                           <button class="btn btn-outline hidden" id="save-to-journal-btn"><i class="fas fa-save"></i> Save to Journal</button>
+                       </div>
+                    </div>
+                </section>
+
+                <section id="mindfulness" class="section-container">
+                    <div class="interactive-background" id="mindfulness-background"></div>
+                    <div class="card mindfulness scroll-animate">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-spa" aria-hidden="true"></i></div>
+                            <h2 class="card-title">Mindfulness Exercises</h2>
+                        </div>
+                        <p>Practice these guided exercises to reduce stress and improve focus:</p>
+                        <div class="exercise-circle-container">
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <div class="exercise-front">
+                                        <div class="exercise-info"><h3>Deep Breathing</h3><p>5-minute guided breathing exercise</p></div>
+                                        <div class="exercise-duration">5 min</div>
+                                    </div>
+                                    <div class="exercise-back"><button class="btn btn-small">Start</button></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <div class="exercise-front">
+                                        <div class="exercise-info"><h3>Body Scan</h3><p>Progressive relaxation technique</p></div>
+                                        <div class="exercise-duration">10 min</div>
+                                    </div>
+                                    <div class="exercise-back"><button class="btn btn-small">Start</button></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <div class="exercise-front">
+                                        <div class="exercise-info"><h3>Mindful Walking</h3><p>Ground yourself in the present</p></div>
+                                        <div class="exercise-duration">15 min</div>
+                                    </div>
+                                    <div class="exercise-back"><button class="btn btn-small">Start</button></div>
+                                </li>
+                                <li class="exercise-item">
+                                   <div class="exercise-front">
+                                        <div class="exercise-info"><h3>Loving-Kindness</h3><p>Cultivate compassion for yourself</p></div>
+                                        <div class="exercise-duration">8 min</div>
+                                    </div>
+                                    <div class="exercise-back"><button class="btn btn-small">Start</button></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <div class="exercise-front">
+                                        <div class="exercise-info"><h3>Gratitude Practice</h3><p>Boost positivity and thankfulness</p></div>
+                                        <div class="exercise-duration">7 min</div>
+                                    </div>
+                                    <div class="exercise-back"><button class="btn btn-small">Start</button></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="resources" class="section-container">
+                    <div class="interactive-background" id="resources-background"></div>
+                    <div class="card help scroll-animate">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-hands-helping" aria-hidden="true"></i></div>
+                            <h2 class="card-title">Professional Help</h2>
+                        </div>
+                        <p>Connect with mental health professionals when you need support:</p>
+                        <div class="resources-grid">
+                            <div class="resource-card">
+                                <div class="resource-icon"><i class="fas fa-user-md" aria-hidden="true"></i></div>
+                                <h3 class="resource-title">Find a Therapist</h3>
+                                <p class="resource-desc">Search for licensed professionals in your area.</p>
+                            </div>
+                            <div class="resource-card">
+                                <div class="resource-icon"><i class="fas fa-comments" aria-hidden="true"></i></div>
+                                <h3 class="resource-title">Online Counseling</h3>
+                                <p class="resource-desc">Chat with counselors via video or text message.</p>
+                            </div>
+                            <div class="resource-card">
+                                <div class="resource-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></div>
+                                <h3 class="resource-title">Support Hotlines</h3>
+                                <p class="resource-desc">24/7 crisis support from trained volunteers.</p>
+                            </div>
+                        </div>
+                        <div class="emergency">
+                            <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> In Crisis?</h3>
+                            <p>If you're experiencing a mental health emergency, please contact a service immediately:</p>
+                            <span class="hotline">National Suicide & Crisis Lifeline: 988</span>
+                            <button class="btn btn-outline" style="margin-top: 20px; width: 100%;"><i class="fas fa-phone" aria-hidden="true"></i> Call Emergency Services</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="profile" class="section-container hidden">
+                    <div class="card profile scroll-animate">
+                        <div class="profile-header">
+                            <div class="profile-info">
+                                <h2 class="profile-name" id="profile-name-display">ALok Kumar</h2>
+                                <p class="profile-email" id="profile-email-display">jessica.smith@example.com</p>
+                                <div class="profile-buttons">
+                                    <a href="#home" class="btn" id="profile-home-btn"><i class="fas fa-home"></i> Home</a>
+                                    <button class="btn btn-outline" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-content">
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Journal Entries</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">5</div>
+                                    <div class="stat-label">Mindful Moments</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">8</div>
+                                    <div class="stat-label">Exercises Completed</div>
+                                </div>
+                            </div>
+                            <div class="profile-settings">
+                                <h3>Settings</h3>
+                                <div class="setting">
+                                    <label for="username">Username</label>
+                                    <input type="text" id="username" value="xyz.com">
+                                </div>
+                                <div class="setting">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" value="........">
+                                </div>
+                                <button class="btn">Update Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Contact Us</h4>
+                        <p><i class="fas fa-envelope"></i> serenity.help@email.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>Serenity Mental Health Companion • Your journey to better mental health starts here.</p>
+                    <p><small>This app is for informational purposes only and is not a substitute for professional medical advice.</small></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Welcome Back!</h2>
+            <form id="login-form">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <div class="social-login">
+                <p>Or log in with</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="signup-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Join Serenity</h2>
+            <form id="signup-form">
+                <input type="text" name="fullName" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+            <div class="social-login">
+                <p>Or sign up with</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chatbot-fab" class="chatbot-fab">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    <div id="chatbot-window" class="chatbot-window hidden">
+        <div class="chatbot-header">
+            <h3>Serenity Bot</h3>
+            <button id="close-chatbot-btn" class="close-chatbot-btn">&times;</button>
+        </div>
+        <div id="chatbot-body" class="chatbot-body">
+            </div>
+        <form id="chatbot-form" class="chatbot-input-form">
+            <input type="text" id="chatbot-input" placeholder="Type a message..." autocomplete="off">
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="functions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
